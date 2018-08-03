@@ -1,37 +1,49 @@
-const Minesweeper = function () {
-
-}
+const Minesweeper = function () {}
 
 Minesweeper.prototype.annotate = function (grid = ['']) {
     this.grid = grid;
-    this.width = grid[0].length;
-    this.height = grid.length;
-    console.log(grid);
-    this._countLocalMines({row: 5, column: 5});
-}
-
-Minesweeper.prototype._iterateThroughSquares = function () {
-    this.populatedGrid = this.grid;
-    for (let row = 0; row < this.height; row ++) {
-        for (let column = 0; column < this.width; column ++) {
-
-        }
-    }
-}
-
-Minesweeper.prototype._countLocalMines = function (coordinate) {
-    let mines = 0;
-    for (let row = coordinate.row - 1; row <= coordinate.row + 1; row ++) {
-        if (row < 0 || row > this.width) continue;
-        for (let column = coordinate.column -1; column <= coordinate.column + 1; column ++) {
-            if (column < 0 || column > this.height || 
-                (row === coordinate.row && column === coordinate.column)) continue;
-            if (this.grid[row][column] === '*') mines ++;
-            console.log(coordinate, row,column);
-        }
-    }
-    console.log(mines);
-    return mines;
+    return findAndCatalogMines(this.grid);
 }
 
 module.exports = Minesweeper;
+
+const findAndCatalogMines = function (grid) {
+    workingGrid = buildWorkingGrid(grid);
+    grid.forEach((row, rowIndex) => {
+        row.split('').forEach((square, columnIndex) => {
+            if (square === "*") catalogMine(workingGrid, rowIndex, columnIndex);
+        })
+    })
+    return finalizeWorkingGrid(workingGrid);
+}
+
+const buildWorkingGrid = function (grid) {
+    return grid.reduce((workingGrid, row) => {
+        workingGrid.push(row.split(''));
+        return workingGrid;
+    }, []);
+}
+
+const catalogMine = function (workingGrid, rowIndex, columnIndex) {
+    for (let row = rowIndex - 1; row <= rowIndex + 1; row ++) {
+        if (workingGrid[row] === undefined) continue;
+        for (let column = columnIndex - 1; column <= columnIndex + 1; column ++) {
+            let thisSquare = workingGrid[row][column];
+            if (thisSquare === undefined || thisSquare === "*" || (row === rowIndex && column === columnIndex)) continue;
+            if (thisSquare === ' ') {
+                thisSquare = 1;
+            } else {
+                thisSquare ++;
+            }
+            workingGrid[row][column] = thisSquare;
+        }
+    }
+    return workingGrid;
+}
+
+const finalizeWorkingGrid = function (workingGrid) {
+    return workingGrid.reduce((finalizedGrid, row) => {
+        finalizedGrid.push(row.join(''));
+        return finalizedGrid;
+    }, [])
+}
