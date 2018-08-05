@@ -69,6 +69,17 @@ describe('LinkedList', function () {
     expect(list.pop()).toBe(30);
     expect(list.shift()).toBe(10);
   });
+  it('actually deletes the last element from the list', function () {
+    var list = new LinkedList();
+    list.push(10);
+    list.push(20);
+    list.push(30);
+    list.delete(10);
+    console.log(list);
+    expect(list.count()).toBe(2);
+    expect(list.pop()).toBe(30);
+    expect(list.shift()).toBe(20);
+  });
   it('deletes the only element', function () {
     var list = new LinkedList();
     list.push(10);
