@@ -1,21 +1,17 @@
 var LinkedList = require('./linked-list');
 
 describe('LinkedList', function () {
-  it('push a bunch', function () {
+  it('push/pop', function () {
     var list = new LinkedList();
     list.push(10);
     list.push(20);
     list.push(30);
     list.push(40);
-    list.push(50);
-    console.log(list.pop(), list.pop(), list.pop(), list.pop(), list.pop());
-  })
-  it('push/pop', function () {
-    var list = new LinkedList();
-    list.push(10);
-    list.push(20);
+    expect(list.pop()).toBe(40);
+    expect(list.pop()).toBe(30);
     expect(list.pop()).toBe(20);
     expect(list.pop()).toBe(10);
+    expect(list.count()).toBe(0);
   });
   it('push/shift', function () {
     var list = new LinkedList();
@@ -23,6 +19,7 @@ describe('LinkedList', function () {
     list.push(20);
     expect(list.shift()).toBe(10);
     expect(list.shift()).toBe(20);
+    expect(list.count()).toBe(0);
   });
   it('unshift/shift', function () {
     var list = new LinkedList();
@@ -30,6 +27,7 @@ describe('LinkedList', function () {
     list.unshift(20);
     expect(list.shift()).toBe(20);
     expect(list.shift()).toBe(10);
+    expect(list.count()).toBe(0);
   });
   it('unshift/pop', function () {
     var list = new LinkedList();
@@ -37,6 +35,7 @@ describe('LinkedList', function () {
     list.unshift(20);
     expect(list.pop()).toBe(10);
     expect(list.pop()).toBe(20);
+    expect(list.count()).toBe(0);
   });
   it('example', function () {
     var list = new LinkedList();
@@ -58,8 +57,16 @@ describe('LinkedList', function () {
     expect(list.count()).toBe(1);
     list.push(20);
     expect(list.count()).toBe(2);
+    list.push(30);
+    expect(list.count()).toBe(3);
+    list.push(40);
+    expect(list.count()).toBe(4);
+    list.push(50);
+    expect(list.count()).toBe(5);
+    list.delete(50);
+    expect(list.count()).toBe(4);
   });
-  it('deletes the last element from the list', function () {
+  it('deletes a middle element from the list', function () {
     var list = new LinkedList();
     list.push(10);
     list.push(20);
@@ -68,17 +75,19 @@ describe('LinkedList', function () {
     expect(list.count()).toBe(2);
     expect(list.pop()).toBe(30);
     expect(list.shift()).toBe(10);
+    expect(list.count()).toBe(0);
   });
-  it('actually deletes the last element from the list', function () {
+  it('deletes the last element from the list', function () {
     var list = new LinkedList();
     list.push(10);
     list.push(20);
     list.push(30);
-    list.delete(10);
-    console.log(list);
+    list.delete(30);
     expect(list.count()).toBe(2);
-    expect(list.pop()).toBe(30);
-    expect(list.shift()).toBe(20);
+    expect(list.pop()).toBe(20);
+    expect(list.shift()).toBe(10);
+    expect(list.count()).toBe(0);
+    console.log(list.shift());
   });
   it('deletes the only element', function () {
     var list = new LinkedList();

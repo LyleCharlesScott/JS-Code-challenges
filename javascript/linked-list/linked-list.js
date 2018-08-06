@@ -1,83 +1,95 @@
 'use strict';
 
 const LinkedList = function () {
-    this.frontOfList = null;
-    this.backOfList = null;
+    this.clearList()
 }
 
 LinkedList.prototype.push = function (value) {
     if (this._isEmptyList()) return this._startNewList(value);
-    this.backOfList.previousNood = new Nood({value, nextNood: this.backOfList});
-    this.backOfList = this.backOfList.previousNood;
+    this.tail.previousNood = new Nood({value, nextNood: this.tail});
+    this._reassignTail(this.tail.previousNood);
+    this.length ++;
     return this.count();
 }
 
 LinkedList.prototype.pop = function () {
-    let poppedNood = this.backOfList;
-    this.backOfList = poppedNood.nextNood;
+    let poppedNood = this.tail;
+    this._reassignTail(poppedNood.nextNood);
+    this.length --;
     return poppedNood.value;
 }
 
 LinkedList.prototype.unshift = function (value) {
     if (this._isEmptyList()) return this._startNewList(value);
-    this.frontOfList.nextNood = new Nood({value, previousNood: this.frontOfList});
-    this.frontOfList = this.frontOfList.nextNood;
+    this.head.nextNood = new Nood({value, previousNood: this.head});
+    this._reassignHead(this.head.nextNood);
+    this.length ++
     return this.count();
 }
 
 LinkedList.prototype.shift = function () {
-    let shiftedNood = this.frontOfList;
-    this.frontOfList = shiftedNood.previousNood;
+    let shiftedNood = this.head;
+    this._reassignHead(shiftedNood.previousNood);
+    this.length --;
     return shiftedNood.value;
 }
 
 LinkedList.prototype.delete = function (value) {
     let deletedNood = this._identifyNoodByValue(value);
-    if (deletedNood !== this.frontOfList && deletedNood !== this.backOfList) {
-        let infrontOfDeletedNood = deletedNood.nextNood;
-        let behindDeletedNood = deletedNood.previousNood;
-        infrontOfDeletedNood.previousNood = behindDeletedNood;
-        behindDeletedNood.nextNood = infrontOfDeletedNood;
-        return this.count();
+    switch (deletedNood) {
+        case (null) :
+            break;
+        case (this.head) :
+            this.shift();
+            break;
+        case (this.tail):
+            this.pop();
+            break;
+        default :
+            let infrontOfDeletedNood = deletedNood.nextNood;
+            let behindDeletedNood = deletedNood.previousNood;
+            infrontOfDeletedNood.previousNood = behindDeletedNood;
+            behindDeletedNood.nextNood = infrontOfDeletedNood;
+            this.length --;
     }
-    if (deletedNood === this.frontOfList && deletedNood === this.backOfList) {
-        this.frontOfList = null;
-        this.backOfList = null;
-        return this.count();
-    }
-    if (deletedNood === this.frontOfList) this.shift();
-    if (deletedNood === this.backOfList) this.pop();
     return this.count();
+
 }
 
 LinkedList.prototype._identifyNoodByValue = function (value) {
     if (this._isEmptyList()) return null;
-    let currentNood = this.frontOfList;
-    while (currentNood.value !== value) currentNood = currentNood.previousNood;
+    let currentNood = this.tail;
+    while (currentNood.value !== value) currentNood = currentNood.nextNood;
     return currentNood;
 } 
 
 LinkedList.prototype._startNewList = function (value) {
-    this.frontOfList = new Nood({value});
-    this.backOfList = this.frontOfList;
+    this.head = new Nood({value});
+    this.tail = this.head;
+    this.length = 1;
     return this;
 }
 
 LinkedList.prototype._isEmptyList = function () {
-    return this.frontOfList === null;
+    return this.head === null;
+}
+
+LinkedList.prototype._reassignHead = function (Nood) {
+    this.head = Nood;
+}
+
+LinkedList.prototype._reassignTail = function (Nood) {
+    this.tail = Nood;
+}
+
+LinkedList.prototype.clearList = function () {
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
 }
 
 LinkedList.prototype.count = function () {
-    let count = 0;
-    if (this._isEmptyList() === false) {
-        count ++;
-        let currentNood = this.frontOfList;
-        while (currentNood.previousNood !== null) {
-            count ++;
-            currentNood = currentNood.previousNood;
-        } 
-    }
-    return count;
+    return this.length;
 }
 
 const Nood = function (parameters) {
