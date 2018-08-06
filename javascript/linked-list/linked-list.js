@@ -13,6 +13,7 @@ LinkedList.prototype.push = function (value) {
 }
 
 LinkedList.prototype.pop = function () {
+    if (this._isEmptyList()) throw new Error ('Cannot pop from empty list');
     let poppedNood = this.tail;
     this._reassignTail(poppedNood.nextNood);
     this.length --;
@@ -28,6 +29,7 @@ LinkedList.prototype.unshift = function (value) {
 }
 
 LinkedList.prototype.shift = function () {
+    if (this._isEmptyList()) throw new Error ('Cannot shift from empty list');
     let shiftedNood = this.head;
     this._reassignHead(shiftedNood.previousNood);
     this.length --;
@@ -35,10 +37,9 @@ LinkedList.prototype.shift = function () {
 }
 
 LinkedList.prototype.delete = function (value) {
+    if (this._isEmptyList()) throw new Error ('Cannot delete from empty list');
     let deletedNood = this._identifyNoodByValue(value);
     switch (deletedNood) {
-        case (null) :
-            break;
         case (this.head) :
             this.shift();
             break;
@@ -53,11 +54,9 @@ LinkedList.prototype.delete = function (value) {
             this.length --;
     }
     return this.count();
-
 }
 
 LinkedList.prototype._identifyNoodByValue = function (value) {
-    if (this._isEmptyList()) return null;
     let currentNood = this.tail;
     while (currentNood.value !== value) currentNood = currentNood.nextNood;
     return currentNood;
