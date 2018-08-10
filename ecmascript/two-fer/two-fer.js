@@ -3,4 +3,4 @@ const twoFer = (name) => {
   return `One for ${recipient}, one for me.`;
 };
 
-module.exports = twoFer;
+export default twoFer;

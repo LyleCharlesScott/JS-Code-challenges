@@ -72,4 +72,4 @@ const proteinTranslator = (RNA = '') => {
   }, []);
 };
 
-module.exports = proteinTranslator;
+export default proteinTranslator;

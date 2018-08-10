@@ -32,4 +32,4 @@ const toRoman = (arabicValue) => {
   return buildRomanNumberal(arabicValue);
 };
 
-module.exports = toRoman;
+export default toRoman;

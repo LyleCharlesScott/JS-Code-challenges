@@ -11,4 +11,4 @@ class Leap {
   }
 }
 
-module.exports = Leap;
+export default Leap;

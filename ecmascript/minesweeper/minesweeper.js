@@ -29,7 +29,7 @@ const reassembleGrid = workingGrid =>
 class Minesweeper {
   annotate(grid = []) {
     this.grid = grid;
-    workingGrid = buildWorkingGrid(this.grid);
+    const workingGrid = buildWorkingGrid(this.grid);
     workingGrid.forEach((row, rowIndex) =>
       row.forEach((square, columnIndex) => {
         if (square === '*') updateGrid(workingGrid, rowIndex, columnIndex);
@@ -38,4 +38,4 @@ class Minesweeper {
   }
 }
 
-module.exports = Minesweeper;
+export default Minesweeper;
