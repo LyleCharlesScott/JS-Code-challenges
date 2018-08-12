@@ -1,11 +1,11 @@
-const RNADictionary = { C: 'G', G: 'C', T: 'A', A: 'U' };
+const rnaDictionary = { C: 'G', G: 'C', T: 'A', A: 'U' };
 
-class rnaTranscription {
+class RnaTranscription {
   toRna(sequence) {
     return [...sequence].reduce((accumulator, currentNecleotide) => {
       let transcription = accumulator;
-      if (RNADictionary[currentNecleotide] !== undefined) {
-        transcription += RNADictionary[currentNecleotide];
+      if (rnaDictionary[currentNecleotide] !== undefined) {
+        transcription += rnaDictionary[currentNecleotide];
         return transcription;
       }
       throw new Error('Invalid input DNA.');
@@ -13,4 +13,4 @@ class rnaTranscription {
   }
 }
 
-export default rnaTranscription;
+export default RnaTranscription;
