@@ -26,4 +26,16 @@ describe('Triangle', function () {
     expect(new Triangle(20).lastRow)
       .toEqual(twentieth);
   });
+
+  it('brooks no shenannigans', function () {
+    tri = new Triangle(2);
+    tri.rows.push(5);
+    expect(tri.rows).toEqual([[1], [1, 1]]);
+  });
+
+  it('brooks no lastrow shenannigans', function () {
+    tri = new Triangle(4);
+    tri.lastRow.push(5);
+    expect(tri.lastRow).toEqual([1, 3, 3, 1]);
+  });
 });
