@@ -102,4 +102,10 @@ describe('Substitution cipher', () => {
     expect(new Cipher('abc').encode('iamapandabear'))
       .toEqual('iboaqcnecbfcr');
   });
+
+  test('can handle caps', function() {
+    let cipher = new Cipher('c');
+    expect(cipher.encode('aA bB cC dD eE fF gG!!!@#$%')).toEqual('cC dD eE fF gG hH iI!!!@#$%');
+    expect(cipher.decode('cC dD eE fF gG hH iI!!!@#$%')).toEqual('aA bB cC dD eE fF gG!!!@#$%');
+  })
 });

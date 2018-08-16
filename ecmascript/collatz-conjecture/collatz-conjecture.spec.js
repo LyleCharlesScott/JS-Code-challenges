@@ -29,3 +29,15 @@ describe('steps()', () => {
     }).toThrow(new Error('Only positive numbers are allowed'));
   });
 });
+
+
+const findMatches = (array, difference) => {
+  const getLargerNumber = element => element + difference;
+
+  return array.reduce((matches, element) => {
+    if (array.findIndex(getLargerNumber) !== -1) return matches + 1;
+    return matches;
+  }, 0)
+};
+
+console.log(findMatches([1,3,5], 2));

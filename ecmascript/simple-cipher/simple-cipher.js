@@ -1,5 +1,6 @@
-const uppercaseOffset = 65;
 const lowercaseOffset = 97;
+const alphabetLength = 26;
+const alphabetUpperEdge = lowercaseOffset + alphabetLength;
 
 const generateKey = () => {
   let key = '';
@@ -20,32 +21,32 @@ const generateDecoderKey = key =>
   }, '');
 
 const errorCheck = (key) => {
-  if (key === '' || typeof key !== 'string' || !key.match(/^[a-z]/)) {
+  if (key === '' || typeof key !== 'string' || (/^[a-z]/).test(key) === false) {
     throw new Error('Bad key');
   }
   return key;
 };
 
-const getOffset = (letter) => {
-  if ((/^[a-z]*$/g).test(letter) === true) return lowercaseOffset;
-  if ((/^[A-Z]*$/g).test(letter) === true) return uppercaseOffset;
+const getType = (character) => {
+  if ((/^[a-z]*$/g).test(character) === true) return 'lowercase';
+  if ((/^[A-Z]*$/g).test(character) === true) return 'uppercase';
   return 'not a letter';
 };
 
 const encodeLetter = (character, key) => {
-  const offset = getOffset(character);
-  if (offset === 'not a letter') return character;
-  const keyCode = offset === lowercaseOffset ?
-    key.charCodeAt() : key.toUpperCase().charCodeAt();
-  let newCharCode = character.charCodeAt() + (keyCode - offset);
-  if (newCharCode >= offset + 26) newCharCode -= 26;
-  return String.fromCharCode(newCharCode);
+  const type = getType(character);
+  if (type === 'not a letter') return character;
+  const keyCode = key.charCodeAt() - lowercaseOffset;
+  let newCharCode = character.toLowerCase().charCodeAt() + keyCode;
+  if (newCharCode >= alphabetUpperEdge) newCharCode -= alphabetLength;
+  const encodedLetter = String.fromCharCode(newCharCode);
+  return type === 'uppercase' ? encodedLetter.toUpperCase() : encodedLetter;
 };
 
 class Cipher {
-  constructor(key) {
+  constructor(key = generateKey()) {
     Object.defineProperty(this, 'key', {
-      value: key !== undefined ? errorCheck(key) : generateKey(),
+      value: errorCheck(key),
       writeable: false,
     });
     Object.defineProperty(this, 'decoderKey', {
