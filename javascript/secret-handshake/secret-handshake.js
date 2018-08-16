@@ -1,9 +1,9 @@
 const dictionary = {
-  '1': 'wink',
-  '2': 'double blink',
-  '4': 'close your eyes',
-  '8': 'jump',
-  '16': 'reverse',
+  [1]: 'wink',
+  [2]: 'double blink',
+  [4]: 'close your eyes',
+  [8]: 'jump',
+  [16]: 'reverse',
 };
 
 const SecretHandshake = function(number) {
