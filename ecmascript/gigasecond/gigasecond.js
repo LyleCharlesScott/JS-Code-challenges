@@ -1,4 +1,4 @@
-const aTrillionMilliseconds = 1000000000000;
+const aTrillionMilliseconds = 1e12;
 
 class Gigasecond {
   constructor(birthday) {
@@ -8,6 +8,6 @@ class Gigasecond {
   date() {
     return new Date(Number(this.birthday) + aTrillionMilliseconds);
   }
-};
+}
 
 export default Gigasecond;
