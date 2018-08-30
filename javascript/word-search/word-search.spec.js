@@ -10,7 +10,7 @@ describe('single line grids', () => {
     expect(wordSearch instanceof WordSearch).toEqual(true);
   });
 
-  xtest('can accept a target search word', () => {
+  test('can accept a target search word', () => {
 
     const grid = ["jefblpepre"];
 
@@ -19,7 +19,7 @@ describe('single line grids', () => {
     expect(wordSearch.find(["glasnost"])).toEqual({"glasnost": undefined});
   });
 
-  xtest('should locate a word written left to right', () => {
+  test('should locate a word written left to right', () => {
     const grid = ["clojurermt"];
 
     const expectedResults = {
@@ -35,7 +35,7 @@ describe('single line grids', () => {
     expect(wordSearch.find(["clojure"])).toEqual(expectedResults);
   });
 
-  xtest('can locate a left to right word in a different position', () => {
+  test('can locate a left to right word in a different position', () => {
 
     const grid = ["mtclojurer"];
 
@@ -52,7 +52,7 @@ describe('single line grids', () => {
 
   });
 
-  xtest('can locate a different left to right word', () => {
+  test('can locate a different left to right word', () => {
 
     const grid = ["coffeelplx"];
 
@@ -69,7 +69,7 @@ describe('single line grids', () => {
 
   });
 
-  xtest('can locate that different left to right word in a different position', () => {
+  test('can locate that different left to right word in a different position', () => {
 
     const grid = ["xcoffeezlp"];
 
@@ -89,7 +89,7 @@ describe('single line grids', () => {
 });
 
 describe('multi line grids', () => {
-  xtest('can locate a left to right word in a two line grid', () => {
+  test('can locate a left to right word in a two line grid', () => {
 
     const grid = [
       "jefblpepre",
@@ -109,7 +109,7 @@ describe('multi line grids', () => {
 
   });
 
-  xtest('can locate a left to right word in a different position in a two line grid', () => {
+  test('can locate a left to right word in a different position in a two line grid', () => {
 
     const grid = [
       "jefblpepre",
@@ -129,7 +129,7 @@ describe('multi line grids', () => {
 
   });
 
-  xtest('can locate a left to right word in a three line grid', () => {
+  test('can locate a left to right word in a three line grid', () => {
 
     const grid = [
       "camdcimgtc",
@@ -150,7 +150,7 @@ describe('multi line grids', () => {
 
   });
 
-  xtest('can locate a left to right word in a ten line grid', () => {
+  test('can locate a left to right word in a ten line grid', () => {
 
     const grid = [
       "jefblpepre",
@@ -178,7 +178,7 @@ describe('multi line grids', () => {
 
   });
 
-  xtest('can locate a left to right word in a different position in a ten line grid', () => {
+  test('can locate a left to right word in a different position in a ten line grid', () => {
 
     const grid = [
       "jefblpepre",
@@ -206,7 +206,7 @@ describe('multi line grids', () => {
 
   });
 
-  xtest('can locate a different left to right word in a ten line grid', () => {
+  test('can locate a different left to right word in a ten line grid', () => {
 
     const grid = [
       "jefblpepre",
@@ -238,7 +238,7 @@ describe('multi line grids', () => {
 
 
 describe('can find multiple words', () => {
-  xtest('can find two words written left to right', () => {
+  test('can find two words written left to right', () => {
     const grid = [
       "aefblpepre",
       "camdcimgtc",
@@ -275,7 +275,7 @@ describe('different directions', () => {
 
 
 
-  xtest('should locate a single word written right to left', () => {
+  test('should locate a single word written right to left', () => {
     const grid = ["rixilelhrs"];
 
     const expectedResults = {
@@ -291,7 +291,7 @@ describe('different directions', () => {
 
   });
 
-  xtest('should locate multiple words written in different horizontal directions', ()=> {
+  test('should locate multiple words written in different horizontal directions', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -324,7 +324,7 @@ describe('different directions', () => {
 });
 
 describe('vertical directions', ()=> {
-  xtest('should locate words written top to bottom', ()=> {
+  test('should locate words written top to bottom', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -359,7 +359,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written bottom to top', ()=> {
+  test('should locate words written bottom to top', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -397,7 +397,7 @@ describe('vertical directions', ()=> {
     expect(wordSearch.find(["elixir", "clojure", "ecmascript", "rust"])).toEqual(expectedResults);
 
   });
-  xtest('should locate words written top left to bottom right', ()=> {
+  test('should locate words written top left to bottom right', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -446,7 +446,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written bottom right to top left', ()=> {
+  test('should locate words written bottom right to top left', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -500,7 +500,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written bottom left to top right', ()=> {
+  test('should locate words written bottom left to top right', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -559,7 +559,7 @@ describe('vertical directions', ()=> {
 
   });
 
-  xtest('should locate words written top right to bottom left', ()=> {
+  test('should locate words written top right to bottom left', ()=> {
     const grid = [
       "jefblpepre",
       "camdcimgtc",
@@ -622,5 +622,120 @@ describe('vertical directions', ()=> {
     ])).toEqual(expectedResults);
 
   });
+
+  test('should locate multiple words written in different horizontal directions', ()=> {
+    const grid = [
+      "pclojurere",
+      "oamdcimgtc",
+      "nivokprjsm",
+      "snopdsnopp",
+      "rixilelhro",
+      "wolsnoprpn",
+      "screeaumgs",
+      "elixirsfje",
+      "jalaycalmp",
+      "clojurermt"
+    ];
+
+    const expectedResults = {
+      "clojure": {
+        "start": [10, 1],
+        "end":   [10, 7]
+      },
+      "elixir":    {
+        "start": [5, 6],
+        "end":   [5, 1]
+      }
+    };
+
+    const wordSearch = new WordSearch(grid);
+
+    expect(wordSearch.find(["elixir", "clojure", "snop"])).toEqual(expectedResults);
+
+  });
+
+  describe('a larger dataset', ()=> {
+    test('should locate 50 capitals', ()=> {
+      const grid = [
+        'WAMEMUUKIHFAVWEBTESSLBDYZ', 'LKGFAFPCNCOYOMXSTRJHOFVHL',
+        'ECNAIIIODKINFOTLYJETSCBQH', 'KEFTJCCRIKRVANRETMHNFVAAO',
+        'REVNEDHEALAITTOTIRAQTGTNN', 'MTJANYELNNLASPFSCLVDROOEI',
+        'OBZSRFYTADEGUEKUADXVINNLT', 'NYIDSDETPRIMGLNUMCPERSRES',
+        'TSTSWONIOOGEUIAFOGRXWQOHU', 'GNRIMBNLLFHLAERFHYBAMEUNA',
+        'OQNACAELITTAGRFZAMXIMSGDV', 'MWLICNRXSRSSATNALTAXREELQ',
+        'EXOBAOOCRAGIUNOSKCAJBSNOS', 'RSZMAXRSKHWBWSHDONZPMOSTS',
+        'YIBULUMKRNOTSELRAHCOTAYAO', 'OLCLAGMTPEUZHESFPGIALTIVC',
+        'RONONPOXGLFBIKIRLNLTINDEO', 'EPOCSHZLUFTFPROGELLCTNLLL',
+        'VANZIOALAMGTEVESAANPOLYMU', 'ONOVNEONUNONIJAHKOAMIMYAM',
+        'DNTBGNNDIPCDENAESUHVPSDLB', 'HASLOICREVEGBSCRLCHIPXKBU',
+        'TVOHEXPKLNJGSIAGISACTACXS', 'BBBONSAXCJQETCWRAPFBOISEP',
+        'LINCOLNENLEYLSHNCHVLWUMBT',
+      ];
+
+      const expectedResults = {
+        "ANNAPOLIS": { start: [ 22, 2 ], end: [ 14, 2 ] },
+        "ATLANTA": { start: [ 12, 19 ], end: [ 12, 13 ] },
+        "AUGUSTA": { start: [ 10, 13 ], end: [ 4, 13 ] },
+        "AUSTIN": { start: [ 10, 25 ], end: [ 5, 25 ] },
+        "BATONROUGE": { start: [ 3, 23 ], end: [ 12, 23 ] },
+        "BISMARCK": { start: [ 7, 2 ], end: [ 14, 9 ] },
+        "BOISE": { start: [ 24, 20 ], end: [ 24, 24 ] },
+        "BOSTON": { start: [ 24, 3 ], end: [ 19, 3 ] },
+        "CARSONCITY": { start: [ 24, 14 ], end: [ 15, 23 ] },
+        "CHARLESTON": { start: [ 15, 19 ], end: [ 15, 10 ] },
+        "CHEYENNE": { start: [ 4, 7 ], end: [ 11, 7 ] },
+        "COLUMBIA": { start: [ 18, 4 ], end: [ 11, 4 ] },
+        "COLUMBUS": { start: [ 16, 25 ], end: [ 23, 25 ] },
+        "DENVER": { start: [ 5, 6 ], end: [ 5, 1 ] },
+        "DESMOINES": { start: [ 11, 24 ], end: [ 19, 16 ] },
+        "DOVER": { start: [ 21, 1 ], end: [ 17, 1 ] },
+        "FRANKFORT": { start: [ 11, 15 ], end: [ 3, 15 ] },
+        "HARTFORD": { start: [ 14, 10 ], end: [ 7, 10 ] },
+        "HELENA": { start: [ 9, 24 ], end: [ 4, 24 ] },
+        "HONOLULU": { start: [ 23, 4 ], end: [ 16, 11 ] },
+        "INDIANAPOLIS": { start: [ 1, 9 ], end: [ 12, 9 ] },
+        "JACKSON": { start: [ 13, 20 ], end: [ 13, 14 ] },
+        "JEFFERSONCITY": { start: [ 20, 14 ], end: [ 8, 2 ] },
+        "LANSING": { start: [ 15, 5 ], end: [ 21, 5 ] },
+        "LINCOLN": { start: [ 25, 1 ], end: [ 25, 7 ] },
+        "LITTLEROCK": { start: [ 10, 8 ], end: [ 1, 8 ] },
+        "MADISON": { start: [ 4, 18 ], end: [ 10, 24 ] },
+        "MONTGOMERY": { start: [ 6, 1 ], end: [ 15, 1 ] },
+        "MONTPELIER": { start: [ 2, 14 ], end: [ 11, 14 ] },
+        "NASHVILLE": { start: [ 25, 16 ], end: [ 17, 24 ] },
+        "OKLAHOMACITY": { start: [ 14, 17 ], end: [ 3, 17 ] },
+        "OLYMPIA": { start: [ 17, 25 ], end: [ 23, 19 ] },
+        "PHOENIX": { start: [ 17, 6 ], end: [ 23, 6 ] },
+        "PROVIDENCE": { start: [ 16, 17 ], end: [ 25, 8 ] },
+        "RALEIGH": { start: [ 4, 11 ], end: [ 10, 11 ] },
+        "RICHMOND": { start: [ 24, 16 ], end: [ 17, 23 ] },
+        "SACRAMENTO": { start: [ 6, 16 ], end: [ 15, 25 ] },
+        "SAINTPAUL": { start: [ 14, 25 ], end: [ 22, 17 ] },
+        "SALEM": { start: [ 12, 12 ], end: [ 8, 12 ] },
+        "SALTLAKECITY": { start: [ 14, 23 ], end: [ 25, 12 ] },
+        "SANTAFE": { start: [ 7, 4 ], end: [ 1, 4 ] },
+        "SPRINGFIELD": { start: [ 24, 6 ], end: [ 14, 16 ] },
+        "TALLAHASSEE": { start: [ 15, 21 ], end: [ 25, 11 ] },
+        "TOPEKA": { start: [ 19, 12 ], end: [ 24, 7 ] },
+        "TRENTON": { start: [ 1, 17 ], end: [ 7, 23 ] },
+      };
+
+      const wordSearch = new WordSearch(grid);
+
+      expect(wordSearch.find([
+        "ANNAPOLIS", "ATLANTA", "AUGUSTA", "AUSTIN", "BATONROUGE",
+        "BISMARCK", "BOISE", "BOSTON", "CARSONCITY", "CHARLESTON",
+        "CHEYENNE", "COLUMBIA", "COLUMBUS", "DENVER", "DESMOINES",
+        "DOVER", "FRANKFORT", "HARTFORD", "HELENA", "HONOLULU",
+        "INDIANAPOLIS", "JACKSON", "JEFFERSONCITY", "LANSING", "LINCOLN",
+        "LITTLEROCK", "MADISON", "MONTGOMERY", "MONTPELIER", "NASHVILLE",
+        "OKLAHOMACITY", "OLYMPIA", "PHOENIX", "PROVIDENCE", "RALEIGH",
+        "RICHMOND", "SACRAMENTO", "SAINTPAUL", "SALEM", "SALTLAKECITY",
+        "SANTAFE", "SPRINGFIELD", "TALLAHASSEE", "TOPEKA", "TRENTON",
+      ])).toEqual(expectedResults);
+    });
+
+  });
+
 
 });
